@@ -11,8 +11,11 @@
                 <DomainRequired>on</DomainRequired>
                 <LoginName>{{ config.imap.login }}</LoginName>
                 <SPA>{{ config.imap.spa }}</SPA>
+{% if config.imap.ssl == 'on' %}
                 <SSL>{{ config.imap.ssl }}</SSL>
+{% else %}
                 <Encryption>{{ config.imap.encryption }}</Encryption>
+{% endif %}
                 <AuthRequired>{{ config.imap.auth }}</AuthRequired>
             </Protocol>
             <Protocol>
@@ -22,7 +25,11 @@
                 <DomainRequired>on</DomainRequired>
                 <LoginName>{{ config.pop3.login }}</LoginName>
                 <SPA>{{ config.pop3.spa }}</SPA>
+{% if config.imap.ssl == 'on' %}
                 <SSL>{{ config.pop3.ssl }}</SSL>
+{% else %}
+                <Encryption>{{ config.pop3.encryption }}</Encryption>
+{% endif %}
                 <AuthRequired>{{ config.pop3.auth }}</AuthRequired>
             </Protocol>
             <Protocol>

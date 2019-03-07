@@ -10,18 +10,21 @@
       <port>{{ config.imap.port }}</port>
       <socketType>{{ config.imap.encryption }}</socketType>
       <authentication>{{ config.imap.spa }}</authentication>
-      <username>{{ config.imap.auth }}</username>
+      <username>{{ config.imap.login }}</username>
+    </incomingServer>
+    <incomingServer type="pop3">
+      <hostname>{{ config.pop3.host }}</hostname>
+      <port>{{ config.pop3.port }}</port>
+      <socketType>{{ config.pop3.encryption }}</socketType>
+      <authentication>{{ config.pop3.spa }}</authentication>
+      <username>{{ config.pop3.login }}</username>
     </incomingServer>
     <outgoingServer type="smtp">
-      <hostname>%SERVER/SMTP/HOST%</hostname>
-      <port>%SERVER/SMTP/PORT%</port>
-      <socketType>%SERVER/SMTP/SOCKET%</socketType>
-      <authentication>password-cleartext</authentication>
-      <username>%EMAIL%</username>
+      <hostname>{{ config.smtp.host }}</hostname>
+      <port>{{ config.smtp.port }}</port>
+      <socketType>{{ config.smtp.encryption }}</socketType>
+      <authentication>{{ config.smtp.spa }}</authentication>
+      <username>{{ config.smtp.login }}</username>
     </outgoingServer>
-    <documentation url="%INFO/URL%">
-      <descr lang="de">Allgemeine Beschreibung der Einstellungen</descr>
-      <descr lang="en">Generic settings page</descr>
-    </documentation>
   </emailProvider>
 </clientConfig>

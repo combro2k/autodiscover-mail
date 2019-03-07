@@ -12,7 +12,7 @@ app_autodiscover_outlook:
     type: 'outlook'
 
 app_autodiscover_thunderbird:
-  path: /config-v1.1.xml
+  path: /mail/config-v1.1.xml
   controller: App\Controller\AutoDiscoverController::generate
   defaults:
     type: 'thunderbird'

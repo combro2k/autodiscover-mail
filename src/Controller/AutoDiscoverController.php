@@ -22,17 +22,24 @@ class AutoDiscoverController extends AbstractController
       case 'thunderbird':
         $template = 'thunderbird.xml.twig';
 
-        $app['imap']['spa'] = $app['imap']['spa'] === 'off' ? 'password-cleartext' : 'password-encrypted';
-        $app['pop3']['spa'] = $app['pop3']['spa'] === 'off' ? 'password-cleartext' : 'password-encrypted';
-        $app['smtp']['spa'] = $app['smtp']['spa'] === 'off' ? 'password-cleartext' : 'password-encrypted';
+        foreach (['imap', 'pop3', 'smtp'] as $i) {
+          $app[$i]['spa'] = $app[$i]['spa'] === 'off' ? 'password-cleartext' : 'password-encrypted';
 
+          if ($app[$i]['ssl'] === 'on') {
+             $app[$i]['encryption'] = 'SSL';
+          } else {
+            $app[$i]['encryption'] = $app[$i]['encryption'] === 'TLS' ? 'STARTTLS' : 'plain';
+          }
+        }
 
         break;
     }
 
+    $response = new Response();
+    $response->headers->set('Content-Type', 'text/xml');
 
     return $this->render("autodiscover/{$template}", [
       'config' => $app,
-    ]);
+    ], $response);
   }
 }

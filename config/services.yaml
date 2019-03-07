@@ -27,7 +27,7 @@ parameters:
       host: '%env(SMTP_HOST)%'
       port: '%env(SMTP_PORT)%'
       login: '%env(SMTP_LOGIN)%'
-      encryption: '%env(IMAP_ENCRYPTION)%'
+      encryption: '%env(SMTP_ENCRYPTION)%'
       spa: '%env(SMTP_SPA)%'
       ssl: '%env(SMTP_SSL)%'
       auth: '%env(SMTP_AUTH)%'
