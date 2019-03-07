@@ -10,16 +10,24 @@ app_autodiscover_outlook:
   controller: App\Controller\AutoDiscoverController::generate
   defaults:
     type: 'outlook'
+    preset: null
 
 app_autodiscover_thunderbird:
   path: /mail/config-v1.1.xml
   controller: App\Controller\AutoDiscoverController::generate
   defaults:
     type: 'thunderbird'
+    preset: null
 
 app_autodiscover_ios:
   path: /email.mobileconfig
   controller: App\Controller\AutoDiscoverController::generate
   defaults:
     type: 'ios'
+    preset: null
 
+app_autodiscover_auto:
+  path: /generate/{type}/{preset}
+  controller: App\Controller\AutoDiscoverController::generate
+  defaults:
+    preset: null
