@@ -17,3 +17,9 @@ app_autodiscover_thunderbird:
   defaults:
     type: 'thunderbird'
 
+app_autodiscover_ios:
+  path: /email.mobileconfig
+  controller: App\Controller\AutoDiscoverController::generate
+  defaults:
+    type: 'ios'
+

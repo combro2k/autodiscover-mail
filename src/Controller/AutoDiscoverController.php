@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AutoDiscoverController extends AbstractController
@@ -15,35 +14,55 @@ class AutoDiscoverController extends AbstractController
 
     $template = 'undefined.html.twig';
 
+    $app['domain'] = $request->server->get('HTTP_HOST');
+    $app['email'] = 'user@example.org';
+
+
     switch($type) {
-      case 'outlook':
-        $template = 'outlook.xml.twig';
+    case 'ios':
+      $template = 'ios.xml.twig';
 
-        break;
+      if ($request->query->has('email')) {
+        $app['email'] = $email = $request->query->get('email');
 
-      case 'thunderbird':
-        $template = 'thunderbird.xml.twig';
-
-        foreach (['imap', 'pop3', 'smtp'] as $i) {
-          $app[$i]['spa'] = $app[$i]['spa'] === 'off' ? 'password-cleartext' : 'password-encrypted';
-
-          $app['domain'] = $request->server->get('HTTP_HOST');
-          if ($request->query->has('emailaddress')) {
-            $email = $request->query->get('emailaddress');
-            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-              $email = explode('@', $email);
-              $app['domain'] = array_pop($email);
-            }
-          }
-
-          if ($app[$i]['ssl'] === 'on') {
-             $app[$i]['encryption'] = 'SSL';
-          } else {
-            $app[$i]['encryption'] = $app[$i]['encryption'] === 'TLS' ? 'STARTTLS' : 'plain';
-          }
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+          $email = explode('@', $email);
+          $app['domain'] = array_pop($email);
         }
+      }
 
-        break;
+
+      break;
+
+    case 'outlook':
+      $template = 'outlook.xml.twig';
+
+      break;
+
+    case 'thunderbird':
+      if ($request->query->has('emailaddress')) {
+        $app['email'] = $email = $request->query->get('emailaddress');
+
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+          $email = explode('@', $email);
+          $app['domain'] = array_pop($email);
+        }
+      }
+
+      $template = 'thunderbird.xml.twig';
+
+      foreach (['imap', 'pop3', 'smtp'] as $i) {
+        $app[$i]['spa'] = $app[$i]['spa'] === 'off' ? 'password-cleartext' : 'password-encrypted';
+
+
+        if ($app[$i]['ssl'] === 'on') {
+          $app[$i]['encryption'] = 'SSL';
+        } else {
+          $app[$i]['encryption'] = $app[$i]['encryption'] === 'TLS' ? 'STARTTLS' : 'plain';
+        }
+      }
+
+      break;
     }
 
     $response = new Response();
