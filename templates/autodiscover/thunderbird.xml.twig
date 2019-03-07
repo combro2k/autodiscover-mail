@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <clientConfig version="1.1">
-  <emailProvider id="%INFO/DOMAIN%">
-    <domain>{{ app.request.host }}</domain>
-    <displayName>{{ app.request.host }} Mail</displayName>
-    <displayShortName>{{ app.request.host }} Mail</displayShortName>
+  <emailProvider id="{{ config.domain }}">
+    <domain>{{ config.domain }}</domain>
+    <displayName>{{ config.domain }} Mail</displayName>
+    <displayShortName>{{ config.domain }}</displayShortName>
     <incomingServer type="imap">
       <hostname>{{ config.imap.host }}</hostname>
       <port>{{ config.imap.port }}</port>
