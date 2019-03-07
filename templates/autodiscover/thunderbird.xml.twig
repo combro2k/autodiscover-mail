@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<clientConfig version="1.1">
+  <emailProvider id="%INFO/DOMAIN%">
+    <domain>{{ app.request.host }}</domain>
+    <displayName>{{ app.request.host }} Mail</displayName>
+    <displayShortName>{{ app.request.host }} Mail</displayShortName>
+    <incomingServer type="imap">
+      <hostname>{{ config.imap.host }}</hostname>
+      <port>{{ config.imap.port }}</port>
+      <socketType>{{ config.imap.encryption }}</socketType>
+      <authentication>{{ config.imap.spa }}</authentication>
+      <username>{{ config.imap.auth }}</username>
+    </incomingServer>
+    <outgoingServer type="smtp">
+      <hostname>%SERVER/SMTP/HOST%</hostname>
+      <port>%SERVER/SMTP/PORT%</port>
+      <socketType>%SERVER/SMTP/SOCKET%</socketType>
+      <authentication>password-cleartext</authentication>
+      <username>%EMAIL%</username>
+    </outgoingServer>
+    <documentation url="%INFO/URL%">
+      <descr lang="de">Allgemeine Beschreibung der Einstellungen</descr>
+      <descr lang="en">Generic settings page</descr>
+    </documentation>
+  </emailProvider>
+</clientConfig>

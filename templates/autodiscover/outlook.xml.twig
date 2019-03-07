@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Autodiscover xmlns="http://schemas.microsoft.com/exchange/autodiscover/responseschema/2006">
+    <Response xmlns="http://schemas.microsoft.com/exchange/autodiscover/outlook/responseschema/2006a">
+        <Account>
+            <AccountType>email</AccountType>
+            <Action>settings</Action>
+            <Protocol>
+                <Type>IMAP</Type>
+                <Server>{{ config.imap.host }}</Server>
+                <Port>{{ config.imap.port }}</Port>
+                <DomainRequired>on</DomainRequired>
+                <LoginName>{{ config.imap.login }}</LoginName>
+                <SPA>{{ config.imap.spa }}</SPA>
+                <SSL>{{ config.imap.ssl }}</SSL>
+                <Encryption>{{ config.imap.encryption }}</Encryption>
+                <AuthRequired>{{ config.imap.auth }}</AuthRequired>
+            </Protocol>
+            <Protocol>
+                <Type>POP3</Type>
+                <Server>{{ config.pop3.host }}</Server>
+                <Port>{{ config.pop3.port }}</Port>
+                <DomainRequired>on</DomainRequired>
+                <LoginName>{{ config.pop3.login }}</LoginName>
+                <SPA>{{ config.pop3.spa }}</SPA>
+                <SSL>{{ config.pop3.ssl }}</SSL>
+                <AuthRequired>{{ config.pop3.auth }}</AuthRequired>
+            </Protocol>
+            <Protocol>
+                <Type>SMTP</Type>
+                <Server>{{ config.smtp.host }}</Server>
+                <Port>{{ config.smtp.port }}</Port>
+                <DomainRequired>on</DomainRequired>
+                <LoginName>{{ config.smtp.login }}</LoginName>
+                <SPA>{{ config.smtp.spa }}</SPA>
+                <Encryption>{{ config.smtp.encryption }}</Encryption>
+                <AuthRequired>{{ config.smtp.auth }}</AuthRequired>
+                <UsePOPAuth>{{ config.smtp.popauth }}</UsePOPAuth>
+                <SMTPLast>off</SMTPLast>
+            </Protocol>
+        </Account>
+    </Response>
+</Autodiscover>

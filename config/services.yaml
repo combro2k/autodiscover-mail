@@ -4,24 +4,44 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+  app:
+    imap: 
+      host: '%env(IMAP_HOST)%'
+      port: '%env(IMAP_PORT)%'
+      login: '%env(IMAP_LOGIN)%'
+      encryption: '%env(IMAP_ENCRYPTION)%'
+      spa: '%env(IMAP_SPA)%'
+      ssl: '%env(IMAP_SSL)%'
+      auth: '%env(IMAP_AUTH)%'
+
+    pop3:
+      host: '%env(SMTP_HOST)%'
+      port: '%env(SMTP_PORT)%'
+      login: '%env(POP3_LOGIN)%'
+      encryption: '%env(POP3_ENCRYPTION)%'
+      spa: '%env(POP3_SPA)%'
+      ssl: '%env(POP3_SSL)%'
+      auth: '%env(POP3_AUTH)%'
+
+    smtp:
+      host: '%env(SMTP_HOST)%'
+      port: '%env(SMTP_PORT)%'
+      login: '%env(SMTP_LOGIN)%'
+      encryption: '%env(IMAP_ENCRYPTION)%'
+      spa: '%env(SMTP_SPA)%'
+      ssl: '%env(SMTP_SSL)%'
+      auth: '%env(SMTP_AUTH)%'
+      popauth: '%env(SMTP_POPAUTH)%'
 
 services:
-    # default configuration for services in *this* file
-    _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+  App\:
+    resource: '../src/*'
+    exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
-    # controllers are imported separately to make sure services can be injected
-    # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller'
-        tags: ['controller.service_arguments']
-
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+  App\Controller\:
+    resource: '../src/Controller'
+    tags: ['controller.service_arguments']
