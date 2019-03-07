@@ -6,6 +6,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+
 class AutoDiscoverController extends AbstractController
 {
   public function generate(Request $request, $type)
@@ -21,6 +24,10 @@ class AutoDiscoverController extends AbstractController
     switch($type) {
     case 'ios':
       $template = 'ios.xml.twig';
+
+      var_dump((string) $request);
+
+      $app['uuid'] = strtoupper(Uuid::uuid5(Uuid::NAMESPACE_URL, $request));
 
       if ($request->query->has('email')) {
         $app['email'] = $email = $request->query->get('email');

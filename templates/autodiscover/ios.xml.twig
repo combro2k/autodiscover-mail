@@ -42,11 +42,11 @@
       <key>PayloadDisplayName</key>
       <string>{{ config.email }}</string>
       <key>PayloadIdentifier</key>
-      <string>com.tiliq.autodiscover.com.apple.mail.managed.7A981A9E-D5D0-4EF8-87FE-39FD6A506FAC</string>
+      <string>com.{{ config.domain }}.autodiscover.com.apple.mail.managed.{{ config.uuid }}</string>
       <key>PayloadType</key>
       <string>com.apple.mail.managed</string>
       <key>PayloadUUID</key>
-      <string>7A981A9E-D5D0-4EF8-87FE-39FD6A506FAC</string>
+      <string>{{ config.uuid }}</string>
       <key>PayloadVersion</key>
       <real>1</real>
       <key>SMIMEEnablePerMessageSwitch</key>
