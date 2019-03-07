@@ -15,8 +15,8 @@ parameters:
       auth: '%env(IMAP_AUTH)%'
 
     pop3:
-      host: '%env(SMTP_HOST)%'
-      port: '%env(SMTP_PORT)%'
+      host: '%env(POP3_HOST)%'
+      port: '%env(POP3_PORT)%'
       login: '%env(POP3_LOGIN)%'
       encryption: '%env(POP3_ENCRYPTION)%'
       spa: '%env(POP3_SPA)%'
