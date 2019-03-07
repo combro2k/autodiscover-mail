@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    container_name: 'autodiscover_mail'
+    image: 'combro2k/alpine-nginx-php7:latest'
+    volumes:
+      - '.:/data'
+    ports:
+     - "80:80"
